@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Kalkulator Sederhana</title>
+
+    <!-- BOOTSTRAP -->
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css'>
+
+    <!-- CSS -->
+    <style>
+        #boxHasil {
+            background-color: #CBDCEB;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='container mt-5'>
+        <div class='col-6 mx-auto'>
+            <div class='card shadow'>
+                <div class='card-header'>
+                    <h3>Kalkulator Sederhana</h3>
+                </div>
+                <div class='card-body'>
+                    <!-- INPUTAN BILANGAN PERTAMA -->
+                    <div class='mb-3'>
+                        <label for='bilanganPertama' class='form-label'>Bilangan Pertama</label>
+                        <input type='number' class='form-control' id='bilanganPertama'
+                            placeholder='Masukkan Bilangan Pertama'>
+                    </div>
+
+                    <!-- PEMILIHAN OPERASI -->
+                    <div class='mb-3'>
+                        <label for='operasi' class='form-label'>Operasi</label>
+                        <select class='form-select' id='operasi'>
+                            <option value='' selected>Pilih Operasi</option>
+                            <option value='tambah'>Tambah (+)</option>
+                            <option value='kurang'>Kurang (-)</option>
+                            <option value='kali'>Kali (x)</option>
+                            <option value='bagi'>Bagi (:)</option>
+                        </select>
+                    </div>
+
+                    <!-- INPUTAN BILANGAN KEDUA -->
+                    <div class='mb-3'>
+                        <label for='bilanganKedua' class='form-label'>Bilangan Kedua</label>
+                        <input type='number' class='form-control' id='bilanganKedua'
+                            placeholder='Masukkan Bilangan Kedua'>
+                    </div>
+
+                    <!-- KOTAK HASIL -->
+                    <div class='mb-3'>
+                        <h5 class="text-center">HASIL</h5>
+                        <div class='card'>
+                            <div class='card-body text-center' id='boxHasil'>
+                                <h4 id="hasil"></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TOMBOL HITUNG -->
+                    <button type='submit' class='btn btn-primary' id='hitung'>Hitung</button>
+
+                    <!-- TOMBOL RESET -->
+                    <button type='reset' class='btn btn-danger' id='reset'>Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- BOOTSTRAP -->
+    <script src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js'
+        integrity='sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r'
+        crossorigin='anonymous'></script>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js'
+        integrity='sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y'
+        crossorigin='anonymous'></script>
+
+    <!-- JQUERY -->
+    <script src='https://code.jquery.com/jquery-3.7.1.js'
+        integrity='sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=' crossorigin='anonymous'></script>
+
+    <!-- SWAL -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // FUNCTION SWAL EROR
+        const eror = (text) => {
+            Swal.fire({
+                icon: "error",
+                title: 'Eror',
+                text: text,
+            })
+        }
+
+        // TOMBOL HITUNG DIKLIK
+        $('#hitung').on('click', e => {
+            e.preventDefault()
+
+            let bilanganPertama = parseFloat($('#bilanganPertama').val())
+            let bilanganKedua = parseFloat($('#bilanganKedua').val())
+            let operasi = $('#operasi').val()
+            let hasil
+
+            // VALIDASI
+            if (isNaN(bilanganPertama) || isNaN(bilanganKedua) || operasi == '') {
+                eror('Isi inputan terlebih dahulu')
+                return
+            }
+
+            // PENGHITUNGAN
+            if (operasi == 'tambah') {
+                hasil = bilanganPertama + bilanganKedua
+            } else if (operasi == 'kurang') {
+                hasil = bilanganPertama - bilanganKedua
+            } else if (operasi == 'kali') {
+                hasil = bilanganPertama * bilanganKedua
+            } else if (operasi == 'bagi') {
+                if (bilanganKedua == 0) {
+                    $('#hasil').text('')
+                    $('#bilanganKedua').val('')
+                    eror('Bilangan Kedua tidak boleh nol')
+                } else {
+                    hasil = bilanganPertama / bilanganKedua
+                }
+            }
+            
+            // HASIL TERLIHAT DI BOX HASIL
+            $('#hasil').text(hasil)
+        })
+
+        // RESET
+        $('#reset').on('click', fn => {
+            $('#hasil').text('')
+            $('#bilanganPertama').val('')
+            $('#bilanganKedua').val('')
+            $('#operasi').val('')
+
+            // SWAL BERHASIL MENGHAPUS
+            Swal.fire({
+                position: 'top-end',
+                icon: "success",
+                title: 'Berhasil Reset',
+                showConfirmButton: false,
+                timerProgressBar: true,
+                timer: 1500
+            });
+        })
+
+    </script>
+</body>
+
+</html>
