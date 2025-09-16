@@ -25,3 +25,10 @@
    let bilanganPertama = parseFloat($('#bilanganPertama').val())
    let bilanganKedua = parseFloat($('#bilanganKedua').val())
    let operasi = $('#operasi').val()
+2. Pastikan semua input terisi
+3. Proses perhitungan sesuai operasi yang dipilih, yaitu penjumlahan, pengurangan, perkalian, dan pembagian
+4. Tampilkan hasil di box hasil
+   
+**Fitur Reset** 
+1. Kosongkan semua input dan hasil
+2. Menampilkan notifikasi berhasil reset menggunakan Swal
