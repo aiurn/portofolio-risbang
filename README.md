@@ -1,33 +1,27 @@
 # PROSES PENGERJAAN KALKULATOR SEDERHANA
 
 **Membuat Struktur HTML**
-1. Buat file index.html dan atur struktur dasar HTML
+
+1. Buat file `index.html` dan atur struktur dasar HTML
 2. Menambahkan Bootstrap untuk styling dan jQuery untuk penghitungan
-3. Buat halaman utama dengan card untuk input bilangan, operasi, dan hasi
+3. Buat halaman utama dengan card untuk input bilangan, operasi, dan hasil
 
 **Menambahkan Input dan Pilihan Operasi**
-1. Input bilangan pertama (#bilanganPertama) dan bilangan kedua (#bilanganKedua) menggunakan <input type="number"> supaya user tidak menginputkan hal lain
-2. Dropdown <select> untuk memilih operasi (tambah, kurang, kali, bagi)
-3. Menambahkan box hasil (#boxHasil) untuk menampilkan hasil perhitungan.
+
+1. Input bilangan pertama (`#bilanganPertama`) dan bilangan kedua (`#bilanganKedua`) menggunakan `<input type="number">`
+2. Dropdown `<select>` untuk memilih operasi (tambah, kurang, kali, bagi)
+3. Menambahkan box hasil (`#boxHasil`) untuk menampilkan hasil perhitungan
 
 **Tombol dan Penghitungan**
-1. Tombol Hitung (#hitung) untuk penghitungan.
-2. Tombol Reset (#reset) untuk mengosongkan input dan hasil.
-3. Menggunakan SweetAlert2 (Swal) untuk menampilkan pesan error dan notifikasi reset.
+
+1. Tombol Hitung (`#hitung`) untuk penghitungan
+2. Tombol Reset (`#reset`) untuk mengosongkan input dan hasil
+3. Menggunakan SweetAlert2 (Swal) untuk menampilkan pesan error dan notifikasi reset
 
 **Logika JavaScript**
-1. Ambil nilai input dengan jQuery:
-      let bilanganPertama = parseFloat($('#bilanganPertama').val())
-      let bilanganKedua = parseFloat($('#bilanganKedua').val())
-      let operasi = $('#operasi').val()
-2. Pastikan semua input terisi
-3. Proses perhitungan sesuai operasi yang dipilih:
-      tambah → penjumlahan
-      kurang → pengurangan
-      kali → perkalian
-      bagi → pembagian (cek pembagi tidak nol)
-4. Tampilkan hasil di box hasil
 
-**Fitur Reset**
-1. Kosongkan semua input dan hasil.
-2. Menampilkan notifikasi berhasil reset menggunakan Swal.
+1. Ambil nilai input dengan jQuery:  
+   ```javascript
+   let bilanganPertama = parseFloat($('#bilanganPertama').val())
+   let bilanganKedua = parseFloat($('#bilanganKedua').val())
+   let operasi = $('#operasi').val()
